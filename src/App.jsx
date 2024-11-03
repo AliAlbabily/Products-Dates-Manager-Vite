@@ -65,7 +65,7 @@ function App() {
   };
 
   return (
-    <div className="">
+    <div className="main">
       <button className="button" onClick={addNewRow}>Ny Rad</button>
       <table>
         <thead>
