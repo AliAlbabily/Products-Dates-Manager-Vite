@@ -1,12 +1,9 @@
-import { useState, useEffect } from 'react'
-import viteLogo from '/vite.svg'
-import './App.css'
-
+import { useState, useEffect } from 'react';
+import './App.css';
 
 function App() {
   const [rows, setRows] = useState([]);
   const [sortOrder, setSortOrder] = useState('asc'); // Initial sort order is ascending
-  const [editCell, setEditCell] = useState(null); // Tracks which cell is being edited
 
   useEffect(() => {
     // Load initial rows from localStorage or use default values if none exist
@@ -18,8 +15,7 @@ function App() {
   const addNewRow = () => {
     const newRow = [`Row ${rows.length + 1}, Col 1`, `Row ${rows.length + 1}, Col 2`, `Row ${rows.length + 1}, Col 3`, "Plats-x", "X"];
     setRows([...rows, newRow])
-    // Update localStorage
-    localStorage.setItem('rows', JSON.stringify([...rows, newRow]))
+    localStorage.setItem('rows', JSON.stringify([...rows, newRow])) // Update localStorage
   };
 
   // Function to delete a row by index and update localStorage
@@ -28,8 +24,7 @@ function App() {
     if (isConfirmed) {
       const updatedRows = rows.filter((_, index) => index !== indexToDelete);
       setRows(updatedRows)
-      // Update localStorage
-      localStorage.setItem('rows', JSON.stringify(updatedRows))
+      localStorage.setItem('rows', JSON.stringify(updatedRows)) // Update localStorage
     }
   };
 
@@ -44,25 +39,10 @@ function App() {
     setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc'); // Toggle sort order
   };
 
-  // Function to handle cell double-click and enter editing mode
-  const handleDoubleClick = (rowIndex, colIndex) => {
-    setEditCell({ row: rowIndex, col: colIndex })
-  };
-
-  // Function to handle editing value change
-  const handleEditChange = (e, rowIndex, colIndex) => {
-    const newValue = e.target.value
-    const updatedRows = [...rows]
-    updatedRows[rowIndex][colIndex] = newValue;
-    setRows(updatedRows)
-  };
-
-  // Function to handle finishing editing on blur or Enter key
-  const finishEditing = () => {
-    setEditCell(null)
-    // Update localStorage
-    localStorage.setItem('rows', JSON.stringify(rows))
-  };
+  // Function to handle editing
+  // const handleEditing = () => {
+  //   localStorage.setItem('rows', JSON.stringify(rows))
+  // };
 
   return (
     <div className="main">
@@ -81,36 +61,17 @@ function App() {
           </tr>
         </thead>
         <tbody>
-          {rows.map((row, rowIndex) => (
-            <tr key={rowIndex}>
-              {row.map((cell, colIndex) => (
-                colIndex < 4 ? ( // Ensure all columns except "Radera" column are editable
-                  <td
-                    key={colIndex}
-                    onDoubleClick={() => handleDoubleClick(rowIndex, colIndex)}
-                  >
-                    {editCell && editCell.row === rowIndex && editCell.col === colIndex ? (
-                      <input
-                        type="text"
-                        value={cell}
-                        onChange={(e) => handleEditChange(e, rowIndex, colIndex)}
-                        onBlur={finishEditing}
-                        onKeyDown={(e) => e.key === 'Enter' && finishEditing()}
-                        maxLength={25}
-                        autoFocus
-                      />
-                    ) : (
-                      cell
-                    )}
-                  </td>
-                ) : (
-                  <td key={colIndex}>
-                    <button className="deleteButton" onClick={() => deleteRow(rowIndex)}>
-                      Delete
-                    </button>
-                  </td>
-                )
-              ))}
+          {rows.map((row, index) => (
+            <tr key={index}>
+              <td>{row[0]}</td>
+              <td>{row[1]}</td>
+              <td>{row[2]}</td>
+              <td>{row[3]}</td>
+              <td>
+                <button className="deleteButton" onClick={() => deleteRow(index)}>
+                  Delete
+                </button>
+              </td>
             </tr>
           ))}
         </tbody>
