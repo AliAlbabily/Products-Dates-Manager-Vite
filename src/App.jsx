@@ -46,7 +46,7 @@ function App() {
 
   return (
     <div className="main">
-      <button className="button" onClick={addNewRow}>Ny Rad</button>
+      <button className="button btn" onClick={addNewRow}>Ny Rad</button>
       <table>
         <thead>
           <tr>
@@ -57,7 +57,7 @@ function App() {
             <th>VNR</th>
             <th>Nuvarande Datum</th>
             <th>Buffert</th>
-            <th>Radera</th>
+            <th>Handlingar</th>
           </tr>
         </thead>
         <tbody>
@@ -67,8 +67,11 @@ function App() {
               <td>{row[1]}</td>
               <td>{row[2]}</td>
               <td>{row[3]}</td>
-              <td>
-                <button className="deleteButton" onClick={() => deleteRow(index)}>
+              <td className="actions-column">
+                <button className="editButton btn" onClick={() => deleteRow(index)}>
+                  Edit
+                </button>
+                <button className="deleteButton btn" onClick={() => deleteRow(index)}>
                   Delete
                 </button>
               </td>

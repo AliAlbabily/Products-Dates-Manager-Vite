@@ -66,27 +66,39 @@ tbody tr:hover {
   margin-left: 5px; /* Adjust spacing as needed */
 }
 
+.actions-column {
+  display: flex;
+  gap: 8px; /* Adjust the spacing */
+  justify-content: center;
+}
+
+.btn {
+  font-family: system-ui, sans-serif;
+  transition: all 0.2s ease;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+}
+
+.btn:hover {
+  transform: translateY(2px); /* Slight downward movement */
+}
+
 .button { 
   background-color: #eaded1;
-  font-family: system-ui, sans-serif;
   text-transform: uppercase;
   margin-top: 20px;
   margin-bottom: 20px;
   padding: 10px 20px;
   font-size: 16px;
-  cursor: pointer;
-  border: none;
-  border-radius: 5px;
-  color: #333; /* Text color */
-  font-weight: bold; /* Bold text for emphasis */
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-  transition: all 0.2s ease;
+  color: #333;
+  font-weight: bold;
 }
 
 .button:hover {
   background-color: #dbc5a5;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.15);
-  transform: translateY(2px); /* Slight downward movement */
 }
 
 .button:active { /* Active state for a 'pressed' effect */
@@ -99,14 +111,18 @@ tbody tr:hover {
   padding: 5px 10px;
   color: white;
   background-color: #b74e21f0;
-  border: none;
-  cursor: pointer;
-  border-radius: 5px;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-  transition: all 0.2s ease;
 }
 
 .deleteButton:hover {
   background-color: darkred;
-  transform: translateY(2px); /* Slight downward movement */
+}
+
+.editButton {
+  padding: 5px 10px;
+  color: white;
+  background-color: #8f4fb6f0;
+}
+
+.editButton:hover {
+  background-color: #573070f0;
 }
