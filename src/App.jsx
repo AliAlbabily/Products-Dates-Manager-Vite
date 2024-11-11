@@ -94,7 +94,6 @@ function App() {
       {isOpen && 
         <Modal 
           setIsOpen={setIsOpen} 
-          rowIndex={editingRowIndex}
           rowData={rows[editingRowIndex]}
           onSave={(updatedRow) => updateRow(editingRowIndex, updatedRow)}
         />

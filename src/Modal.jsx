@@ -26,6 +26,7 @@ const Modal = ({ setIsOpen, rowData, onSave }) => {
               <label className="inputLabel">Plats</label>
               <input
                 type="text"
+                maxLength="25"
                 className="textInput"
                 value={place}
                 onChange={(e) => setPlace(e.target.value)}
@@ -35,6 +36,7 @@ const Modal = ({ setIsOpen, rowData, onSave }) => {
               <label className="inputLabel">Varunummer (VNR)</label>
               <input
                 type="text"
+                maxLength="25"
                 className="textInput"
                 value={vnr}
                 onChange={(e) => setVnr(e.target.value)}
@@ -44,6 +46,7 @@ const Modal = ({ setIsOpen, rowData, onSave }) => {
               <label className="inputLabel">Nuvarande Datum</label>
               <input
                 type="text"
+                maxLength="25"
                 className="textInput"
                 value={currentDate}
                 onChange={(e) => setCurrentDate(e.target.value)}
@@ -53,6 +56,7 @@ const Modal = ({ setIsOpen, rowData, onSave }) => {
               <label className="inputLabel">Buffert</label>
               <input
                 type="text"
+                maxLength="25"
                 className="textInput"
                 value={buffer}
                 onChange={(e) => setBuffer(e.target.value)}
