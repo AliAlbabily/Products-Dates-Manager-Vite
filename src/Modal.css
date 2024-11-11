@@ -1,3 +1,8 @@
+
+/* ****************** */
+/* Modal */
+/* ****************** */
+
 .darkBG {
     background-color: rgba(0, 0, 0, 0.3);
     width: 100vw;
@@ -17,42 +22,22 @@
 }
 
 .modal {
+    padding: 20px;
     width: 250px;
-    height: 170px;
+    height: fit-content;
     background: #eaded1;
     z-index: 10;
     border-radius: 10px;
     box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.04);
 }
 
-.modalHeader {
-    height: 50px;
-    background-color: #eaded1;
-    overflow: hidden;
-    border-top-left-radius: 16px;
-    border-top-right-radius: 16px;
-}
-
-.heading {
-    margin: 0;
-    padding: 10px;
-    color: #2c3e50;
-    font-weight: 500;
-    font-size: 18px;
-    text-align: center;
-}
-
 .modalContent {
-    padding: 10px;
     font-size: 14px;
     color: #2c3e50;
     text-align: center;
 }
 
 .modalActions {
-    position: absolute;
-    bottom: 2px;
-    margin-bottom: 10px;
     width: 100%;
 }
 
@@ -122,4 +107,36 @@
     box-shadow: none;
     transform: none;
     background: whitesmoke;
+}
+
+/* ****************** */
+/* Text inputs */
+/* ****************** */
+
+.inputContainer {
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0;
+    padding: 0 20px;
+}
+
+.inputLabel {
+    font-size: 0.85rem;
+    color: #2c3e50;
+    margin-bottom: 4px;
+    font-weight: 500;
+}
+
+.textInput {
+    padding: 8px;
+    font-size: 0.9rem;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    outline: none;
+    transition: border-color 0.25s ease;
+}
+
+.textInput:focus {
+    border-color: #8f4fb6f0;
+    box-shadow: 0 0 5px rgba(143, 79, 182, 0.3);
 }

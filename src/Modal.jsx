@@ -7,14 +7,27 @@ const Modal = ({ setIsOpen }) => {
       <div className="darkBG" onClick={() => setIsOpen(false)} />
       <div className="centered">
         <div className="modal">
-          <div className="modalHeader">
-            <h5 className="heading">Redigera datan</h5>
-          </div>
           <button className="closeBtn" onClick={() => setIsOpen(false)}>
             <i className="bx bx-window-close" style={{ fontSize: "30px" }}></i>
           </button>
           <div className="modalContent">
-            Är du säker att du vill spara ändringarna?
+            {/* Input fields */}
+            <div className="inputContainer">
+              <label className="inputLabel">Plats</label>
+              <input type="text" className="textInput" />
+            </div>
+            <div className="inputContainer">
+              <label className="inputLabel">Varunummer (VNR)</label>
+              <input type="text" className="textInput" />
+            </div>
+            <div className="inputContainer">
+              <label className="inputLabel">Nuvarande Datum</label>
+              <input type="text" className="textInput" />
+            </div>
+            <div className="inputContainer">
+              <label className="inputLabel">Buffert</label>
+              <input type="text" className="textInput" />
+            </div>
           </div>
           <div className="modalActions">
             <div className="actionsContainer">
