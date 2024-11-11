@@ -1,9 +1,12 @@
 import { useState, useEffect } from 'react';
 import './App.css';
 
+import Modal from "./Modal";
+
 function App() {
   const [rows, setRows] = useState([]);
   const [sortOrder, setSortOrder] = useState('asc'); // Initial sort order is ascending
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     // Load initial rows from localStorage or use default values if none exist
@@ -68,7 +71,7 @@ function App() {
               <td>{row[2]}</td>
               <td>{row[3]}</td>
               <td className="actions-column">
-                <button className="editButton btn" onClick={() => deleteRow(index)}>
+                <button className="editButton btn" onClick={() => setIsOpen(true)}>
                   Edit
                 </button>
                 <button className="deleteButton btn" onClick={() => deleteRow(index)}>
@@ -79,6 +82,7 @@ function App() {
           ))}
         </tbody>
       </table>
+      {isOpen && <Modal setIsOpen={setIsOpen} />}
     </div>
   );
 }
