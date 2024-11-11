@@ -7,6 +7,7 @@ function App() {
   const [rows, setRows] = useState([]);
   const [sortOrder, setSortOrder] = useState('asc'); // Initial sort order is ascending
   const [isOpen, setIsOpen] = useState(false);
+  const [editingRowIndex, setEditingRowIndex] = useState(null); // Track which row is being edited
 
   useEffect(() => {
     // Load initial rows from localStorage or use default values if none exist
@@ -42,10 +43,18 @@ function App() {
     setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc'); // Toggle sort order
   };
 
+  const updateRow = (index, updatedRow) => {
+    const updatedRows = rows.map((row, i) => (i === index ? updatedRow : row));
+    setRows(updatedRows)
+    localStorage.setItem('rows', JSON.stringify(updatedRows)) // Update localStorage
+  };
+
   // Function to handle editing
-  // const handleEditing = () => {
-  //   localStorage.setItem('rows', JSON.stringify(rows))
-  // };
+  const handleEditClick = (index) => {
+    setEditingRowIndex(index)
+    setIsOpen(true)
+    // localStorage.setItem('rows', JSON.stringify(rows))
+  };
 
   return (
     <div className="main">
@@ -71,7 +80,7 @@ function App() {
               <td>{row[2]}</td>
               <td>{row[3]}</td>
               <td className="actions-column">
-                <button className="editButton btn" onClick={() => setIsOpen(true)}>
+                <button className="editButton btn" onClick={() => handleEditClick(index)}>
                   Edit
                 </button>
                 <button className="deleteButton btn" onClick={() => deleteRow(index)}>
@@ -82,7 +91,14 @@ function App() {
           ))}
         </tbody>
       </table>
-      {isOpen && <Modal setIsOpen={setIsOpen} />}
+      {isOpen && 
+        <Modal 
+          setIsOpen={setIsOpen} 
+          rowIndex={editingRowIndex}
+          rowData={rows[editingRowIndex]}
+          onSave={(updatedRow) => updateRow(editingRowIndex, updatedRow)}
+        />
+      }
     </div>
   );
 }
