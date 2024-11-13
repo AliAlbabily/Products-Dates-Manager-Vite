@@ -66,12 +66,6 @@ tbody tr:hover {
   margin-left: 5px; /* Adjust spacing as needed */
 }
 
-.actions-column {
-  display: flex;
-  gap: 8px; /* Adjust the spacing */
-  justify-content: center;
-}
-
 .btn {
   font-family: system-ui, sans-serif;
   transition: all 0.2s ease;
@@ -111,6 +105,7 @@ tbody tr:hover {
   padding: 5px 10px;
   color: white;
   background-color: #b74e21f0;
+  margin-left: 5px;
 }
 
 .deleteButton:hover {
@@ -121,6 +116,7 @@ tbody tr:hover {
   padding: 5px 10px;
   color: white;
   background-color: #8f4fb6f0;
+  margin-right: 5px;
 }
 
 .editButton:hover {

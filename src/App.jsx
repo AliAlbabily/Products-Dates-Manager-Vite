@@ -79,7 +79,7 @@ function App() {
               <td>{row[1]}</td>
               <td>{row[2]}</td>
               <td>{row[3]}</td>
-              <td className="actions-column">
+              <td>
                 <button className="editButton btn" onClick={() => handleEditClick(index)}>
                   Edit
                 </button>
