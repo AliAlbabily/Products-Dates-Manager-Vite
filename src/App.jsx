@@ -8,11 +8,12 @@ function App() {
   const [sortOrder, setSortOrder] = useState('asc'); // Initial sort order is ascending
   const [isOpen, setIsOpen] = useState(false);
   const [editingRowIndex, setEditingRowIndex] = useState(null); // Track which row is being edited
+  const [outdatedRow, setOutdatedRow] = useState(false);
 
   useEffect(() => {
     // Load initial rows from localStorage or use default values if none exist
     const savedRows = localStorage.getItem('rows')
-    setRows(savedRows ? JSON.parse(savedRows) : [])
+    setRows(savedRows ? JSON.parse(savedRows) : [])  
   }, []);
 
   // Function to add a new row
@@ -53,8 +54,29 @@ function App() {
   const handleEditClick = (index) => {
     setEditingRowIndex(index)
     setIsOpen(true)
-    // localStorage.setItem('rows', JSON.stringify(rows))
   };
+
+  // change the background color of outdated rows
+  const changeOutdatedRowBackground = (rowData, index) => {
+    if (!rowData[2]) return ""; // No date in the row, no class applied
+
+    // Parse the date in the third column (e.g., "12/2024" or "12-2024")
+    const [month, year] = rowData[2].includes("/")
+      ? rowData[2].split("/")
+      : rowData[2].split("-");
+
+    const rowDate = new Date(year, month - 1); // Month is 0-based in JavaScript Date
+    const currentDate = new Date();
+    const comparisonDate = new Date(currentDate.getFullYear(), currentDate.getMonth()); // Current month and year only
+
+    // Compare the parsed date to the current date
+    if (rowDate < comparisonDate) {
+      console.log(`Row ${index} is outdated. Date: ${rowData[2]}`);
+      return "outdatedRow"; // Return a CSS class for outdated rows
+    }
+
+    return ""; // Return an empty string if the row is not outdated
+  }
 
   return (
     <div className="main">
@@ -74,7 +96,7 @@ function App() {
         </thead>
         <tbody>
           {rows.map((row, index) => (
-            <tr key={index}>
+            <tr key={index} className={changeOutdatedRowBackground(row, index)}>
               <td>{row[0]}</td>
               <td>{row[1]}</td>
               <td>{row[2]}</td>
