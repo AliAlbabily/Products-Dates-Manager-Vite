@@ -8,7 +8,6 @@ function App() {
   const [sortOrder, setSortOrder] = useState('asc'); // Initial sort order is ascending
   const [isOpen, setIsOpen] = useState(false);
   const [editingRowIndex, setEditingRowIndex] = useState(null); // Track which row is being edited
-  const [outdatedRow, setOutdatedRow] = useState(false);
 
   useEffect(() => {
     // Load initial rows from localStorage or use default values if none exist
