@@ -61,17 +61,18 @@ function App() {
 
     // Parse the date in the third column (e.g., "12/2024" or "12-2024")
     const [month, year] = rowData[2].includes("/")
-      ? rowData[2].split("/")
-      : rowData[2].split("-");
+      ? rowData[2].split("/") // if true
+      : rowData[2].split("-") // if false
 
     const rowDate = new Date(year, month - 1); // Month is 0-based in JavaScript Date
     const currentDate = new Date();
-    const comparisonDate = new Date(currentDate.getFullYear(), currentDate.getMonth()); // Current month and year only
+    const normalizedCurrentDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1); // Start of current month
+    const sixMonthsFromNow = new Date(normalizedCurrentDate.getFullYear(), normalizedCurrentDate.getMonth() + 6, 1); // Start of six months ahead
 
-    // Compare the parsed date to the current date
-    if (rowDate < comparisonDate) {
-      console.log(`Row ${index} is outdated. Date: ${rowData[2]}`);
-      return "outdatedRow"; // Return a CSS class for outdated rows
+    // Check if the row date is within the next 6 months
+    if (rowDate >= normalizedCurrentDate && rowDate <= sixMonthsFromNow) {
+      console.log(`Row ${index} is outdated within 6 months. Date: ${rowData[2]}`);
+      return "outdatedRow"; // Return a CSS class for rows within 6 months
     }
 
     return ""; // Return an empty string if the row is not outdated
